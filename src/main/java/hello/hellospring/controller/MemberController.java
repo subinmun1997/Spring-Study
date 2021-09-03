@@ -23,7 +23,7 @@ public class MemberController {
      * memberController와 memberService 연결
      * Dependency Injection 의존 관계 주입
      */
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService) { // 생성자 주입
         this.memberService = memberService;
     }
 }
