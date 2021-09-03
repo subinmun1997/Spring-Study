@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member : ${members}"> <!-- model안에 있는 값 꺼냄 -->
+                <td th:text="${member.id}"></td> // <!--loop 돌면서 로직 실행 -->
+                <td th:text="${member.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
