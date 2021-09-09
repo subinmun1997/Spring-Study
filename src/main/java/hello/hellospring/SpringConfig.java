@@ -1,23 +1,26 @@
 package hello.hellospring;
 
-import hello.hellospring.repository.JdbcMemberRepository;
-import hello.hellospring.repository.JdbcTemplateMemberRepository;
+import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
 
 @Configuration
 public class SpringConfig {
 
-    private DataSource dataSource; // 스프링이 자체적으로 database와 연결할 수 있는 bean을 생성함
+    //private DataSource dataSource; // 스프링이 자체적으로 database와 연결할 수 있는 bean을 생성함
 
-    @Autowired
-    public SpringConfig(DataSource dataSource) { // 주입(DI)
-        this.dataSource = dataSource;
+    //@Autowired
+    //public SpringConfig(DataSource dataSource) { // 주입(DI)
+        //this.dataSource = dataSource;
+    //}
+    private EntityManager em;
+
+    public SpringConfig(EntityManager em) {
+        this.em = em;
     }
 
     @Bean // 스프링이 뜰 때 @Configuration 읽고 @Bean을 보면 이건 스프링 빈에 등록하라는 것이네 하고 인식함
@@ -38,8 +41,8 @@ public class SpringConfig {
          * 인터페이스를 두고 구현체를 바꿔끼는 기능을 굉장히 편리하게 하도록 스프링 컨테이너가 지원한다. (코드의 수정 없이)
          * 기존의 코드는 손대지 않고 애플리케이션 조립하는 코드의 간단한 수정만으로도 변경이 가능하다.
          */
-        return new JdbcTemplateMemberRepository(dataSource);
-
+        //return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
 
 
     }
