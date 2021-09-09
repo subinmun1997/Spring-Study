@@ -1,6 +1,7 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,12 @@ public class SpringConfig {
     @Bean
     public MemberRepository memberRepository() {
         //return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        //return new JdbcMemberRepository(dataSource);
         /* 스프링을 사용하는 이유: 객체지향적인 설계가 좋다. 다형성을 활용한다.
          * 인터페이스를 두고 구현체를 바꿔끼는 기능을 굉장히 편리하게 하도록 스프링 컨테이너가 지원한다. (코드의 수정 없이)
          * 기존의 코드는 손대지 않고 애플리케이션 조립하는 코드의 간단한 수정만으로도 변경이 가능하다.
          */
+        return new JdbcTemplateMemberRepository(dataSource);
 
 
 
